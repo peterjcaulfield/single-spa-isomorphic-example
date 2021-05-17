@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Isomorphic Microfrontends</title>
+    <meta
+      name="importmap-type"
+      content="systemjs-importmap"
+      server-cookie
+      server-only
+    />
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.0.0/dist/import-map-overrides.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.6.1/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.6.1/dist/extras/amd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.6.1/dist/extras/named-exports.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <assets></assets>
+  </head
+  <body>
+    <template id="single-spa-layout">
+      <single-spa-router>
+        <route path="page-a">
+          <application name="@acme/page-a" props="page-a-prop"></application>
+        </route>
+      </single-spa-router>
+    </template>
+    <fragment name="importmap"></fragment>
+    <script>
+      System.import("@acme/root-config");
+    </script>
+    <import-map-overrides-full
+      show-when-local-storage="devtools"
+      dev-libs
+    ></import-map-overrides-full>
+  </body>
+</html>
